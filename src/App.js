@@ -1,18 +1,19 @@
-import { createBrowserRouter, RouterProvider} from "react-router-dom";
-import Homepage from "./pages/Homepage";
+import {Routes, Route} from "react-router-dom";
+import Homepage from "./pages/homepage/Homepage";
 import Signin from "./pages/Signin";
+import Header from "./components/header/Header";
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
 function App() {
-  const router = createBrowserRouter([{
-    path: '/',
-    element: <Homepage />
-  }, {
-    path: '/signin',
-    element: <Signin />
-  }])
   return (
-    <RouterProvider router={router} />
+    <>
+      <Header />
+      <Routes>
+        <Route path="/" element={<Homepage />} />
+        <Route path="/signin" element={<Signin />} />
+      </Routes>
+    </>
   );
 }
 
