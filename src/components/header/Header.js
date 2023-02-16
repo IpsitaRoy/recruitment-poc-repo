@@ -1,8 +1,13 @@
-import React from "react";
-import {Link} from "react-router-dom";
+import React, { useContext } from "react";
+import { GlobalContext } from "../../App";
+import { Link } from "react-router-dom";
 import "./header.scss";
 
 const Header = () => {
+  const [currentPath, setCurrentPath] = useContext(GlobalContext).currentPath;
+  const signinFromNavHandler = () => {
+    setCurrentPath("/signin");
+  };
   return (
     <div className="header">
       <ul className="nav">
@@ -11,7 +16,8 @@ const Header = () => {
         </div>
         <div className="justify-content-end link-section">
           <li className="nav-item">
-            <Link className="nav-link" to="/signin">Signin</Link>
+            {currentPath === "/signin" ? <></> : <Link className="nav-link" to="/signin" onClick={signinFromNavHandler}>Signin</Link>}
+
           </li>
           <li className="nav-item">
             <Link className="nav-link" to="/signin">Signup</Link>

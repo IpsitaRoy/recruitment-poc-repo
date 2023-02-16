@@ -1,7 +1,24 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
+import { GlobalContext } from "../../App";
 import "./homepage.css";
+import { useNavigate } from "react-router-dom";
 
 const Homepage = () => {
+  const [currentPath, setCurrentPath] = useContext(GlobalContext).currentPath;
+  useEffect(() => {
+    setCurrentPath(window.location.pathname);
+  }, []);
+  const navigate = useNavigate();
+  const recruiterHandler = () => {
+    localStorage.setItem("status", "recruiter");
+    setCurrentPath("/signin");
+    navigate("../signin");
+  };
+  const candidateHandler = () => {
+    localStorage.setItem("status", "candidate");
+    setCurrentPath("/signin");
+    navigate("../signin");
+  };
   return (
     <div className="homepage row">
       <div className="col-xl-6 col-lg-6 col-md-12 banner-left">
@@ -9,10 +26,10 @@ const Homepage = () => {
           Find the job that fits your life
         </div>
         <div className="banner-actions">
-          <div className="recruiter-action">
+          <div className="recruiter-action" onClick={recruiterHandler}>
             I'm a Recruiter
           </div>
-          <div className="candidate-action">
+          <div className="candidate-action" onClick={candidateHandler}>
             I'm looking for Job
           </div>
         </div>
