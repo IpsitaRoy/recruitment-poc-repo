@@ -19,9 +19,6 @@ const Header = () => {
             {currentPath === "/signin" ? <></> : <Link className="nav-link" to="/signin" onClick={signinFromNavHandler}>Signin</Link>}
 
           </li>
-          <li className="nav-item">
-            <Link className="nav-link" to="/signin">Signup</Link>
-          </li>
         </div>
       </ul>
     </div>
