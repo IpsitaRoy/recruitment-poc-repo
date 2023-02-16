@@ -8,8 +8,8 @@ const Profile = () => {
   const [status, setStatus] = useContext(GlobalContext).status;
   return (
     <div className="profile">
-      {status === "Recruiter" && <RecruiterProfile />}
-      {status === "Candidate" && <CandidateProfile />}
+      {status === "recruiter" && <RecruiterProfile />}
+      {status === "candidate" && <CandidateProfile />}
     </div>
   );
 };

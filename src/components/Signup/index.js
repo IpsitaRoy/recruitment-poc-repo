@@ -101,8 +101,8 @@ const Signup = () => {
           localStorage.setItem("canUserList", temparrStr);
         }
       }
-      //NAVIGATE TO USER HOME
-      // navigate("../");
+      //NAVIGATE TO USER Profile
+      navigate("../profile");
     }
     else {
       console.log("Something missing");
