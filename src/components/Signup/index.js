@@ -22,7 +22,6 @@ const Signup = () => {
   const [uemail, setUemail] = useState("");
   const [uaadhar, setUaadhar] = useState("");
   const [upan, setUpan] = useState("");
-  const [udob, setUdob] = useState();
   const [upwd, setUpwd] = useState("");
   const nameHandler = (evt) => {
     setUname(evt.target.value);

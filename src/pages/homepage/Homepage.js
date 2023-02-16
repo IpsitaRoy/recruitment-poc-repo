@@ -2,13 +2,13 @@ import React, { useContext, useEffect } from "react";
 import { GlobalContext } from "../../App";
 import "./homepage.css";
 import { useNavigate } from "react-router-dom";
-const imagePath = require("../../assets/images/person.png");
+//const imagePath = require("../../assets/images/person.png");
 
 const Homepage = () => {
   const [currentPath, setCurrentPath] = useContext(GlobalContext).currentPath;
   useEffect(() => {
     setCurrentPath(window.location.pathname);
-  }, []);
+  });
   const navigate = useNavigate();
   const recruiterHandler = () => {
     localStorage.setItem("status", "recruiter");
