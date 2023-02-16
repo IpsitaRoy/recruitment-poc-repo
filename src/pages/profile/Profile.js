@@ -5,7 +5,7 @@ import "./profile.scss";
 import { GlobalContext } from "../../App";
 
 const Profile = () => {
-  const [status, setStatus] = useContext(GlobalContext).status;
+  const status = localStorage.getItem("status");
   return (
     <div className="profile">
       {status === "recruiter" && <RecruiterProfile />}

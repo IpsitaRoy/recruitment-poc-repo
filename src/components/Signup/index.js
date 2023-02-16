@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { GlobalContext } from "../../App";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import "./signup.scss";
 
 const Signup = () => {
+  const [isLoggedIn, setIsLoggedIn] = useContext(GlobalContext).isLoggedIn;
   useEffect(() => {
     console.log(document.getElementById("status-recruiter"));
     let rec = document.getElementById("status-recruiter");
@@ -69,7 +71,9 @@ const Signup = () => {
         aadhar: uaadhar,
         pan: upan,
         pwd: upwd,
-        userstatus: signupFormUserStatus
+        userstatus: signupFormUserStatus,
+        userdetails: {},
+        userhasdetails: false
       };
       if (signupFormUserStatus === "recruiter") {
         let recUserListCopy = JSON.parse(localStorage.getItem("recUserList"));
@@ -101,6 +105,8 @@ const Signup = () => {
           localStorage.setItem("canUserList", temparrStr);
         }
       }
+      localStorage.setItem("currentUser", JSON.stringify(signupFormUserData));
+      setIsLoggedIn(true);
       //NAVIGATE TO USER Profile
       navigate("../profile");
     }
