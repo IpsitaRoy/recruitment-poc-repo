@@ -27,7 +27,6 @@ const Signin = () => {
         setUpwd(evt.target.value);
     };
     const handleSignup = () => {
-
     };
 
     return (

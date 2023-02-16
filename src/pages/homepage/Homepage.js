@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { GlobalContext } from "../../App";
 import "./homepage.css";
 import { useNavigate } from "react-router-dom";
+const imagePath = require("../../assets/images/person.png");
 
 const Homepage = () => {
   const [currentPath, setCurrentPath] = useContext(GlobalContext).currentPath;
@@ -42,7 +43,7 @@ const Homepage = () => {
             <div className="img-bg-circle3"></div>
           </div>
           <div className="user-img">
-            {/* <img src={userImage} alt="user" /> */}
+            {/* <img src={imagePath} alt="user" /> */}
           </div>
         </div>
       </div>

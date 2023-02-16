@@ -17,7 +17,6 @@ const Header = () => {
         <div className="justify-content-end link-section">
           <li className="nav-item">
             {currentPath === "/signin" ? <></> : <Link className="nav-link" to="/signin" onClick={signinFromNavHandler}>Signin</Link>}
-
           </li>
         </div>
       </ul>
