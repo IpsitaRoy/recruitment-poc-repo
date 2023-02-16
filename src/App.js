@@ -12,11 +12,13 @@ import './App.css';
 export const GlobalContext = createContext();
 function App() {
   const [currentPath, setCurrentPath] = useState(window.location.pathname);
+  const [status, setStatus] = useState(localStorage.getItem('status'));
   return (
     <>
       <Provider store={store}>
         <GlobalContext.Provider value={{
-          currentPath: [currentPath, setCurrentPath]
+          currentPath: [currentPath, setCurrentPath],
+          status: [status, setStatus]
         }}>
           <Header />
           <Routes>
