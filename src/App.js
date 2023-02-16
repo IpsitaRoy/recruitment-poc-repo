@@ -1,6 +1,6 @@
 import {Routes, Route} from "react-router-dom";
 import Homepage from "./pages/homepage/Homepage";
-import Signin from "./pages/Signin";
+import SigninSignup from "./pages/signinandsignup/SigninSignup";
 import Header from "./components/header/Header";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
@@ -11,7 +11,7 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Homepage />} />
-        <Route path="/signin" element={<Signin />} />
+        <Route path="/signin" element={<SigninSignup />} />
       </Routes>
     </>
   );
