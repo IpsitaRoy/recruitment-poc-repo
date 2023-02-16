@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import "./signup.scss";
@@ -16,6 +17,7 @@ const Signup = () => {
       can.checked = true;
     }
   }, []);
+  const navigate = useNavigate();
   const [uname, setUname] = useState("");
   const [uemail, setUemail] = useState("");
   const [uaadhar, setUaadhar] = useState("");
@@ -42,7 +44,12 @@ const Signup = () => {
     setUpwd(evt.target.value);
   };
   const handleSignup = (evt) => {
-    evt.preventDefault();
+    const form = evt.currentTarget;
+    form.checkValidity();
+    if (form.checkValidity() === false) {
+      evt.prventDefault();
+      evt.stopPropogation();
+    }
     let recStatusCheck = document.getElementById("status-recruiter").checked;
     let canStatusCheck = document.getElementById("status-candidate").checked;
     let signupFormUserStatus;
@@ -56,43 +63,50 @@ const Signup = () => {
       signupFormUserStatus = "candidate";
     }
     console.log(signupFormUserStatus);
-    let signupFormUserData = {
-      name: uname,
-      email: uemail,
-      aadhar: uaadhar,
-      pan: upan,
-      pwd: upwd,
-      userstatus: signupFormUserStatus
-    };
-    if (signupFormUserStatus === "recruiter") {
-      let recUserListCopy = JSON.parse(localStorage.getItem("recUserList"));
-      if (recUserListCopy) {
-        let temparr = recUserListCopy;
-        temparr.push(signupFormUserData);
-        let temparrStr = JSON.stringify(temparr);
-        localStorage.setItem("recUserList", temparrStr);
+    if (uname && uemail && uaadhar && upan && upwd) {
+      let signupFormUserData = {
+        name: uname,
+        email: uemail,
+        aadhar: uaadhar,
+        pan: upan,
+        pwd: upwd,
+        userstatus: signupFormUserStatus
+      };
+      if (signupFormUserStatus === "recruiter") {
+        let recUserListCopy = JSON.parse(localStorage.getItem("recUserList"));
+        if (recUserListCopy) {
+          let temparr = recUserListCopy;
+          temparr.push(signupFormUserData);
+          let temparrStr = JSON.stringify(temparr);
+          localStorage.setItem("recUserList", temparrStr);
+        }
+        else {
+          let temparr = [];
+          temparr.push(signupFormUserData);
+          let temparrStr = JSON.stringify(temparr);
+          localStorage.setItem("recUserList", temparrStr);
+        }
       }
-      else {
-        let temparr = [];
-        temparr.push(signupFormUserData);
-        let temparrStr = JSON.stringify(temparr);
-        localStorage.setItem("recUserList", temparrStr);
+      else if (signupFormUserStatus === "candidate") {
+        let canUserListCopy = JSON.parse(localStorage.getItem("canUserList"));
+        if (canUserListCopy) {
+          let temparr = canUserListCopy;
+          temparr.push(signupFormUserData);
+          let temparrStr = JSON.stringify(temparr);
+          localStorage.setItem("canUserList", temparrStr);
+        }
+        else {
+          let temparr = [];
+          temparr.push(signupFormUserData);
+          let temparrStr = JSON.stringify(temparr);
+          localStorage.setItem("canUserList", temparrStr);
+        }
       }
+      //NAVIGATE TO USER HOME
+      // navigate("../");
     }
-    else if (signupFormUserStatus === "candidate") {
-      let canUserListCopy = JSON.parse(localStorage.getItem("canUserList"));
-      if (canUserListCopy) {
-        let temparr = canUserListCopy;
-        temparr.push(signupFormUserData);
-        let temparrStr = JSON.stringify(temparr);
-        localStorage.setItem("canUserList", temparrStr);
-      }
-      else {
-        let temparr = [];
-        temparr.push(signupFormUserData);
-        let temparrStr = JSON.stringify(temparr);
-        localStorage.setItem("canUserList", temparrStr);
-      }
+    else {
+      console.log("Something missing");
     }
   };
   return (
@@ -107,6 +121,7 @@ const Signup = () => {
             id="status-recruiter"
             value="recruiter"
             onChange={() => localStorage.setItem("status", "recruiter")}
+            required
           />
 
           <Form.Check
@@ -117,32 +132,33 @@ const Signup = () => {
             id="status-candidate"
             value="candidate"
             onChange={() => localStorage.setItem("status", "candidate")}
+            required
           />
         </div>
 
         <Form.Group className="mb-3" controlId="formName">
           <Form.Label>Name</Form.Label>
-          <Form.Control type="text" placeholder="Type your name" onChange={nameHandler} />
+          <Form.Control type="text" placeholder="Type your name" onChange={nameHandler} required />
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formEmail">
           <Form.Label>Email address</Form.Label>
-          <Form.Control type="email" placeholder="Enter email" onChange={emailHandler} />
+          <Form.Control type="email" placeholder="Enter email" onChange={emailHandler} required />
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formAdhaar">
           <Form.Label>Adhaar Number</Form.Label>
-          <Form.Control type="text" placeholder="Enter your Adhaar number" onChange={aadharHandler} />
+          <Form.Control type="text" placeholder="Enter your Adhaar number" onChange={aadharHandler} required />
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formPan">
           <Form.Label>PAN</Form.Label>
-          <Form.Control type="text" placeholder="Enter your PAN" onChange={panHandler} />
+          <Form.Control type="text" placeholder="Enter your PAN" onChange={panHandler} required />
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formPassword">
           <Form.Label>Password</Form.Label>
-          <Form.Control type="password" placeholder="Password" onChange={pwdHandler} />
+          <Form.Control type="password" placeholder="Password" onChange={pwdHandler} required />
         </Form.Group>
 
         <Button variant="primary" type="submit" onClick={handleSignup}>
