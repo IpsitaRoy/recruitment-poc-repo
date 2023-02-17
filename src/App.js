@@ -24,7 +24,8 @@ function App() {
           <Routes>
             <Route path="/" element={<Homepage />} />
             <Route path="/signin" element={<SigninSignup />} />
-            <Route path="/profile" element={isLoggedIn ? <Profile /> : <SigninSignup />} />
+            {/* <Route path="/profile" element={isLoggedIn ? <Profile /> : <SigninSignup />} /> */}
+            <Route path="/profile" element={<Profile />} />
           </Routes>
         </GlobalContext.Provider>
       </Provider>
