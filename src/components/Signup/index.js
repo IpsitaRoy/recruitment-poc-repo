@@ -31,16 +31,6 @@ const Signup = () => {
   const emailHandler = (evt) => {
     setUemail(evt.target.value);
   };
-  const aadharHandler = (evt) => {
-    setUaadhar(evt.target.value);
-  };
-  const panHandler = (evt) => {
-    setUpan(evt.target.value);
-  };
-  // const dobHandler = (evt) => {
-  //   console.log(evt.target.value);
-  //   console.log(window.location.pathname);
-  // };
   const pwdHandler = (evt) => {
     setUpwd(evt.target.value);
   };
@@ -149,16 +139,6 @@ const Signup = () => {
         <Form.Group className="mb-3" controlId="formEmail">
           <Form.Label>Email address</Form.Label>
           <Form.Control type="email" placeholder="Enter email" onChange={emailHandler} required />
-        </Form.Group>
-
-        <Form.Group className="mb-3" controlId="formAdhaar">
-          <Form.Label>Adhaar Number</Form.Label>
-          <Form.Control type="text" placeholder="Enter your Adhaar number" onChange={aadharHandler} required />
-        </Form.Group>
-
-        <Form.Group className="mb-3" controlId="formPan">
-          <Form.Label>PAN</Form.Label>
-          <Form.Control type="text" placeholder="Enter your PAN" onChange={panHandler} required />
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formPassword">

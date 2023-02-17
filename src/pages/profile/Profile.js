@@ -10,7 +10,7 @@ const Profile = () => {
   });
 
   return (
-    <div className="profile">
+    <div className="profile col-md-5 col-lg-5">
       {status === "recruiter" && <RecruiterProfile />}
       {status === "candidate" && <CandidateProfile />}
     </div>

@@ -20,7 +20,7 @@ const Header = () => {
     <div className="header">
       <ul className="nav">
         <div className="justify-content-start logo-section">
-          <div>App Name</div>
+          <div>Lilly</div>
         </div>
         <div className="justify-content-end link-section">
           <li className="nav-item">

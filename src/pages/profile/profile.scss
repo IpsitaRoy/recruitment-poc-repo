@@ -1,0 +1,53 @@
+.profile {
+  margin: 40px auto;
+  .recruiter-profile {
+    .profile-header {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    .profile-form {
+      border: 1px solid #dee2e6;
+      border-radius: 6px;
+      padding: 16px 20px;
+
+      .submit-btn {
+        background: #1967d2;
+        height: 48px;
+        width: 150px;
+        border-radius: 4px;
+        margin-top: 10px;
+      }
+    }
+  }
+
+  .candidate-profile {
+    .profile-header {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    .profile-form {
+      .accordion-item {
+        border-radius: 6px;
+        &:last-of-type {
+          margin-top: 20px;
+        }
+
+        .accordion-header {
+          button {
+            border-top-right-radius: 6px;
+            border-top-left-radius: 6px;
+          }
+        }
+      }
+      .submit-btn {
+        background: #1967d2;
+        height: 48px;
+        width: 150px;
+        border-radius: 4px;
+        margin-top: 20px;
+      }
+    }
+  }
+}
