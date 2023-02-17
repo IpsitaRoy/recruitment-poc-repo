@@ -69,7 +69,9 @@ const Signup = () => {
         aadhar: uaadhar,
         pan: upan,
         pwd: upwd,
-        userstatus: signupFormUserStatus
+        userstatus: signupFormUserStatus,
+        userdetails: {},
+        hasuserdetails: false
       };
       if (signupFormUserStatus === "recruiter") {
         let recUserListCopy = JSON.parse(localStorage.getItem("recUserList"));
@@ -101,7 +103,7 @@ const Signup = () => {
           localStorage.setItem("canUserList", temparrStr);
         }
       }
-      //NAVIGATE TO USER Profile
+      //NAVIGATE TO USER PROFILE
       navigate("../profile");
     }
     else {

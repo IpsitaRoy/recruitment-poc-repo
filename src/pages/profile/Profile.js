@@ -1,11 +1,14 @@
-import React, { useContext } from "react";
+import React, { useEffect, useState } from "react";
 import RecruiterProfile from "../../components/RecruiterProfile";
 import CandidateProfile from "../../components/CandidateProfile";
 import "./profile.scss";
-import { GlobalContext } from "../../App";
 
 const Profile = () => {
-  const [status, setStatus] = useContext(GlobalContext).status;
+  const [status, setStatus] = useState('');
+  useEffect(() => {
+    setStatus(localStorage.getItem('status'));
+  });
+
   return (
     <div className="profile">
       {status === "recruiter" && <RecruiterProfile />}
