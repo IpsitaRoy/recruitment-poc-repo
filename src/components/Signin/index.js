@@ -61,7 +61,7 @@ const Signin = () => {
     else if (!flag) {
       // setIsError(true);
       setIsLoggedIn(false);
-      evt.preventDefault();
+      // evt.preventDefault();
     }
   };
   return (
