@@ -1,13 +1,20 @@
 import React, { useContext } from "react";
 import { GlobalContext } from "../../App";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./header.scss";
 
 const Header = () => {
+  const navigate = useNavigate();
   const [currentPath, setCurrentPath] = useContext(GlobalContext).currentPath;
+  const [isLoggedIn, setIsLoggedIn] = useContext(GlobalContext).isLoggedIn;
   const signinFromNavHandler = () => {
     setCurrentPath("/signin");
   };
+  const signoutFromNavHandler = () => {
+    setIsLoggedIn(false);
+    localStorage.removeItem('currentUser');
+    navigate("../");
+  }
   return (
     <div className="header">
       <ul className="nav">
@@ -16,7 +23,8 @@ const Header = () => {
         </div>
         <div className="justify-content-end link-section">
           <li className="nav-item">
-            {currentPath === "/" ? <Link className="nav-link" to="/signin" onClick={signinFromNavHandler}>Signin</Link> : <></>}
+            {currentPath === "/" && <Link className="nav-link" to="/signin" onClick={signinFromNavHandler}>Signin</Link>}
+            {currentPath === "/profile" && <Link className="nav-link" to="/" onClick={signoutFromNavHandler}>Signout</Link>}
           </li>
         </div>
       </ul>
