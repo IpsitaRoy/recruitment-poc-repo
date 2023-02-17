@@ -1,12 +1,12 @@
 .header .nav {
   justify-content: space-between;
-  padding: 20px 40px;
+  padding: 10px 40px;
   border-bottom: solid var(--bs-border-color);
 }
 
 @media screen and (min-width: 1600px) {
   .header .nav {
-    padding: 20px 120px;
+    padding: 10px 120px;
   }
 }
 
@@ -20,4 +20,5 @@
 
 .header .nav .link-section {
   display: flex;
+  align-items: center;
 }
