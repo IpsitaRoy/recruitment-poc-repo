@@ -150,7 +150,7 @@ const CandidateProfile = () => {
 
   return (
     <>
-      <div className="candidate-profile col-md-5 col-lg-5">
+      <div className="candidate-profile col-md-12 col-lg-6">
         { showCandidateForm &&
           <div className="candidate-profile-form">
             <div className="profile-header">
