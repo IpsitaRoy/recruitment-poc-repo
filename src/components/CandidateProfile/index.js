@@ -5,7 +5,7 @@ import Form from 'react-bootstrap/Form';
 
 const CandidateProfile = () => {
   return (
-    <div className="candidate-profile">
+    <div className="candidate-profile col-md-5 col-lg-5">
       <div className="profile-header">
         Fill up the form below and take a step closer to find your dream job.
       </div>
@@ -64,7 +64,7 @@ const CandidateProfile = () => {
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="noticePeriod">
-                <Form.Label>Expected CTC</Form.Label>
+                <Form.Label>Notice Period</Form.Label>
                 <Form.Select aria-label="Year(s) of Experience" required>
                   <option value="15days">15 days</option>
                   <option value="1month">1 Month</option>
@@ -78,7 +78,7 @@ const CandidateProfile = () => {
                 label="Serving Notice Period"
                 name="serving-np"
                 type="checkbox"
-                id="serving-np"
+                id="servingNp"
                 className="mb-3"
               />
 

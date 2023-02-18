@@ -38,14 +38,14 @@ const Signin = () => {
     let recUserArray = JSON.parse(localStorage.getItem("recUserList"));
     let flag = 0;
     let currentUserDetails;
-    canUserArray && canUserArray.map((user) => {
+    canUserArray && canUserArray.forEach((user) => {
       if (user.email === uemail && user.pwd === upwd) {
         flag = 1;
         currentUserDetails = user;
         return;
       }
     });
-    recUserArray && recUserArray.map((user) => {
+    recUserArray && recUserArray.forEach((user) => {
       if (user.email === uemail && user.pwd === upwd) {
         flag = 1;
         currentUserDetails = user;

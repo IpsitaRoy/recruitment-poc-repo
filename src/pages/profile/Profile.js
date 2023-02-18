@@ -7,10 +7,10 @@ const Profile = () => {
   const [status, setStatus] = useState('');
   useEffect(() => {
     setStatus(localStorage.getItem('status'));
-  });
+  }, []);
 
   return (
-    <div className="profile col-md-5 col-lg-5">
+    <div className="profile">
       {status === "recruiter" && <RecruiterProfile />}
       {status === "candidate" && <CandidateProfile />}
     </div>

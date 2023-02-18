@@ -22,8 +22,6 @@ const Signup = () => {
   const navigate = useNavigate();
   const [uname, setUname] = useState("");
   const [uemail, setUemail] = useState("");
-  const [uaadhar, setUaadhar] = useState("");
-  const [upan, setUpan] = useState("");
   const [upwd, setUpwd] = useState("");
   const nameHandler = (evt) => {
     setUname(evt.target.value);
@@ -54,12 +52,10 @@ const Signup = () => {
       signupFormUserStatus = "candidate";
     }
     console.log(signupFormUserStatus);
-    if (uname && uemail && uaadhar && upan && upwd) {
+    if (uname && uemail && upwd) {
       let signupFormUserData = {
         name: uname,
         email: uemail,
-        aadhar: uaadhar,
-        pan: upan,
         pwd: upwd,
         userstatus: signupFormUserStatus,
         userdetails: {},
