@@ -3,7 +3,6 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import Card from 'react-bootstrap/Card';
-import DayzCalendar from "../calendar";
 
 const RecruiterProfile = () => {
   const [primarySkill, setPrimarySkill] = useState('');
@@ -291,22 +290,31 @@ const RecruiterProfile = () => {
                 <Card.Body>
                   <Card.Title>{candidate.name}</Card.Title>
                   <Card.Text>
-                    Year(s) of Experience: {candidate.experience}
+                    Primary Skill: {candidate.userdetails.primarySkill}
                   </Card.Text>
                   <Card.Text>
-                    Current CTC: {candidate.currectCtc}
+                    Secondary Skill: {candidate.userdetails.secondarySkill}
                   </Card.Text>
                   <Card.Text>
-                    Expected CTC: {candidate.expectedCtc}
+                    Tertiary Skill: {candidate.userdetails.tertiarySkill}
                   </Card.Text>
                   <Card.Text>
-                    Notice Period: {candidate.noticePeriod}
+                    Year(s) of Experience: {candidate.userdetails.year}
                   </Card.Text>
                   <Card.Text>
-                    Serving Notice Period: {candidate.servingNp}
+                    Current CTC: {candidate.userdetails.currentCtc}
                   </Card.Text>
                   <Card.Text>
-                    Tentative Joining Date: {candidate.tentativeJoinDate}
+                    Expected CTC: {candidate.userdetails.expectedCtc}
+                  </Card.Text>
+                  <Card.Text>
+                    Notice Period: {candidate.userdetails.noticePeriod}
+                  </Card.Text>
+                  <Card.Text>
+                    Serving Notice Period: {candidate.userdetails.servingNp ? "Yes" : "No"}
+                  </Card.Text>
+                  <Card.Text>
+                    Tentative Joining Date: {candidate.userdetails.tentativeJoinDate}
                   </Card.Text>
                   <Button variant="primary shortlist-btn float-end" onClick={() => shortlistHandler(candidate)}>Shortlist</Button>
                 </Card.Body>
@@ -321,7 +329,7 @@ const RecruiterProfile = () => {
           keyboard={false}
           size="lg"
         >
-          <Form noValidate validated={setPickerValidated} onSubmit={pickerModalSubmitHandler}>
+          <Form noValidate validated={pickerValidated} onSubmit={pickerModalSubmitHandler}>
             <Modal.Header closeButton>
               <Modal.Title>Select Time and Date to create slots</Modal.Title>
             </Modal.Header>
@@ -347,11 +355,6 @@ const RecruiterProfile = () => {
                     <Form.Control type="time" required onChange={endTimeHandler} className="end-time" />
                   </Form.Group>
                 </div>
-                {/* <div className="user-input-submit-btn-container">
-                <Button variant="primary" type="submit" className="user-input-submit-btn" onClick={addUserEvent}>
-                  Create Event
-                </Button>
-              </div> */}
               </div>
             </Modal.Body>
             <Modal.Footer>

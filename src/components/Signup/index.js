@@ -36,7 +36,7 @@ const Signup = () => {
     const form = evt.currentTarget;
     form.checkValidity();
     if (form.checkValidity() === false) {
-      evt.preventDefault();
+      evt.prventDefault();
       evt.stopPropogation();
     }
     let recStatusCheck = document.getElementById("status-recruiter").checked;

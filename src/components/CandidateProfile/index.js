@@ -11,7 +11,7 @@ const CandidateProfile = () => {
   const [adhaar, setAdhaar] = useState('');
   const [pan, setPan] = useState('');
   const [primarySkill, setPrimarySkill] = useState('');
-  const [secondaySkill, setSecondarySkill] = useState('');
+  const [secondarySkill, setSecondarySkill] = useState('');
   const [tertiarySkill, setTertiarySkill] = useState('');
   const [year, setYear] = useState('');
   const [currentCtc, setCurrentCtc] = useState('');
@@ -85,7 +85,7 @@ const CandidateProfile = () => {
   };
 
   const servingNpHandler = (e) => {
-    setServingNp(e.target.value);
+    setServingNp(e.target.checked);
   };
 
   const tentativeJoinDateHandler = (e) => {
@@ -109,7 +109,7 @@ const CandidateProfile = () => {
 
     console.log('resume', resume);
 
-    if(isFormValid) {
+    if (isFormValid) {
       const candidate = {};
 
       candidate.name = name;
@@ -119,7 +119,7 @@ const CandidateProfile = () => {
       candidate.adhaar = adhaar;
       candidate.pan = pan;
       candidate.primarySkill = primarySkill;
-      candidate.secondaySkill = secondaySkill;
+      candidate.secondarySkill = secondarySkill;
       candidate.tertiarySkill = tertiarySkill;
       candidate.year = year;
       candidate.currentCtc = currentCtc;
@@ -135,7 +135,7 @@ const CandidateProfile = () => {
       setShowCandidateForm(false);
 
       allCandidate.map(r => {
-        if(r.name === currentCandidate.name) {
+        if (r.name === currentCandidate.name) {
           r.userdetails = currentCandidate.userdetails;
           r.userhasdetails = currentCandidate.userhasdetails;
         }
@@ -146,12 +146,12 @@ const CandidateProfile = () => {
     }
 
     setValidated(true);
-  }
+  };
 
   return (
     <>
       <div className="candidate-profile col-md-12 col-lg-6">
-        { showCandidateForm &&
+        {showCandidateForm &&
           <div className="candidate-profile-form">
             <div className="profile-header">
               Fill up the form below and take a step closer to find your dream job.
@@ -284,10 +284,7 @@ const CandidateProfile = () => {
 
                       <Form.Group className="mb-3" controlId="tentativeJoinDate">
                         <Form.Label>Tentative Joining Date</Form.Label>
-                        <Form.Control type="text" placeholder="MM/DD/YYYY" required pattern="^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20)\d{2}$" onChange={tentativeJoinDateHandler} />
-                        <Form.Control.Feedback type="invalid">
-                          Please fill up the Date in MM/DD/YYYY format.
-                        </Form.Control.Feedback>
+                        <Form.Control type="date" placeholder="MM/DD/YYYY" required onChange={tentativeJoinDateHandler} />
                       </Form.Group>
 
                       <Form.Group className="mb-3" controlId="comment">
@@ -313,7 +310,7 @@ const CandidateProfile = () => {
       </div>
 
       <div className="candidate-profile-submitted-container col-md-8 col-lg-8">
-        { !showCandidateForm &&
+        {!showCandidateForm &&
           <div className="confirmation-header">
             Your application has been submitted. You'll be notified if a recruiter wants to connect with you.
           </div>
