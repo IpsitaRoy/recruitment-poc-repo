@@ -5,7 +5,7 @@ import Form from 'react-bootstrap/Form';
 
 const CandidateProfile = () => {
   return (
-    <div className="candidate-profile col-md-5 col-lg-5">
+    <div className="candidate-profile col-md-12 col-lg-6">
       <div className="profile-header">
         Fill up the form below and take a step closer to find your dream job.
       </div>
