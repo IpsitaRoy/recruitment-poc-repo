@@ -107,8 +107,6 @@ const CandidateProfile = () => {
     e.preventDefault();
     e.stopPropagation();
 
-    console.log('resume', resume);
-
     if (isFormValid) {
       const candidate = {};
 

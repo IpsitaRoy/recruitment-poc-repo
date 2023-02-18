@@ -115,16 +115,13 @@ const RecruiterProfile = () => {
   };
 
   const shortlistHandler = (data) => {
-    console.log("SHORTLISTED DATA", data);
-    localStorage.setItem("currentShortlisted", data);
+    localStorage.setItem("currentShortlisted", JSON.stringify(data));
     setShow(true);
   };
   const startDateHandler = (evt) => {
-    console.log("START DATE", evt.target.value);
     setStartDate(evt.target.value);
   };
   const endDateHandler = (evt) => {
-    console.log("End DATE", evt.target.value);
     setEndDate(evt.target.value);
   };
   const startTimeHandler = (evt) => {
@@ -136,17 +133,13 @@ const RecruiterProfile = () => {
   const pickerModalSubmitHandler = (evt) => {
     const recruiterForm = evt.currentTarget;
     const isFormValid = recruiterForm.checkValidity();
-    console.log("picker target", recruiterForm);
     evt.preventDefault();
     evt.stopPropagation();
     if (isFormValid) {
       console.log("START DATE", startDate, "END DATE", endDate, "START TIME", startTime, "END TIME", endTime);
       setShow(false);
     }
-    setValidated(true);
-  };
-  const addUserEvent = (ev, date) => {
-    console.log("START DATE", startDate, "END DATE", endDate, "START TIME", startTime, "END TIME", endTime);
+    setPickerValidated(true);
   };
 
   const reloadRecruiterForm = () => {
@@ -328,6 +321,7 @@ const RecruiterProfile = () => {
           backdrop="static"
           keyboard={false}
           size="lg"
+          centered
         >
           <Form noValidate validated={pickerValidated} onSubmit={pickerModalSubmitHandler}>
             <Modal.Header closeButton>

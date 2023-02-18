@@ -28,6 +28,10 @@
 
     .matched-candidate-container {
       justify-content: space-evenly;
+
+      .candidate-info {
+        margin-bottom: 30px;
+      }
     }
 
     .candidate-container-header {

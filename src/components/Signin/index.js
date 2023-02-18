@@ -19,21 +19,11 @@ const Signin = () => {
     setUpwd(evt.target.value);
   };
   const signInHandler = (evt) => {
-    // const form = evt.currentTarget;
-    // if (form.checkValidity() === false) {
-    //   evt.prventDefault();
-    //   evt.stopPropogation();
-    // }
-    // setIsError(true);
-    // navigate("../profile");
     const form = evt.currentTarget;
     if (form.checkValidity() === false) {
       evt.preventDefault();
       evt.stopPropogation();
     }
-    // var pattern = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/; 
-    // const x=uname.match(pattern);
-    // console.log(x);
     let canUserArray = JSON.parse(localStorage.getItem("canUserList"));
     let recUserArray = JSON.parse(localStorage.getItem("recUserList"));
     let flag = 0;
