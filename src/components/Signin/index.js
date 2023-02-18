@@ -54,6 +54,7 @@ const Signin = () => {
     });
     if (flag) {
       localStorage.setItem("currentUser", JSON.stringify(currentUserDetails));
+      localStorage.setItem("status", currentUserDetails.userstatus);
       // setIsError(false);
       setIsLoggedIn(true);
       navigate("../profile");
@@ -61,6 +62,7 @@ const Signin = () => {
     else if (!flag) {
       // setIsError(true);
       setIsLoggedIn(false);
+      localStorage.setItem("status", "");
       // evt.preventDefault();
     }
   };

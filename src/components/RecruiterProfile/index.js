@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import Card from 'react-bootstrap/Card';
 import DayzCalendar from "../calendar";
@@ -20,6 +21,16 @@ const RecruiterProfile = () => {
   const [candidateList, setCandidateList] = useState([]);
   const currentRecruiter = JSON.parse(localStorage.getItem('currentUser'));
   const allRecruiter = JSON.parse(localStorage.getItem('recUserList'));
+  const [startTime, setStartTime] = useState('');
+  const [endTime, setEndTime] = useState('');
+  const [startDate, setStartDate] = useState('');
+  const [endDate, setEndDate] = useState('');
+  const [pickerValidated, setPickerValidated] = useState(false);
+
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   useEffect(() => {
     setShowRecruiterForm(!currentRecruiter.userhasdetails);
@@ -102,6 +113,41 @@ const RecruiterProfile = () => {
       localStorage.setItem('currentUser', JSON.stringify(currentRecruiter));
     }
     setValidated(true);
+  };
+
+  const shortlistHandler = (data) => {
+    console.log("SHORTLISTED DATA", data);
+    localStorage.setItem("currentShortlisted", data);
+    setShow(true);
+  };
+  const startDateHandler = (evt) => {
+    console.log("START DATE", evt.target.value);
+    setStartDate(evt.target.value);
+  };
+  const endDateHandler = (evt) => {
+    console.log("End DATE", evt.target.value);
+    setEndDate(evt.target.value);
+  };
+  const startTimeHandler = (evt) => {
+    setStartTime(evt.target.value);
+  };
+  const endTimeHandler = (evt) => {
+    setEndTime(evt.target.value);
+  };
+  const pickerModalSubmitHandler = (evt) => {
+    const recruiterForm = evt.currentTarget;
+    const isFormValid = recruiterForm.checkValidity();
+    console.log("picker target", recruiterForm);
+    evt.preventDefault();
+    evt.stopPropagation();
+    if (isFormValid) {
+      console.log("START DATE", startDate, "END DATE", endDate, "START TIME", startTime, "END TIME", endTime);
+      setShow(false);
+    }
+    setValidated(true);
+  };
+  const addUserEvent = (ev, date) => {
+    console.log("START DATE", startDate, "END DATE", endDate, "START TIME", startTime, "END TIME", endTime);
   };
 
   const reloadRecruiterForm = () => {
@@ -262,12 +308,60 @@ const RecruiterProfile = () => {
                   <Card.Text>
                     Tentative Joining Date: {candidate.tentativeJoinDate}
                   </Card.Text>
-                  <Button variant="primary shortlist-btn float-end">Shortlist</Button>
+                  <Button variant="primary shortlist-btn float-end" onClick={() => shortlistHandler(candidate)}>Shortlist</Button>
                 </Card.Body>
               </Card>
             )}
           </div>
         }
+        <Modal
+          show={show}
+          onHide={handleClose}
+          backdrop="static"
+          keyboard={false}
+          size="lg"
+        >
+          <Form noValidate validated={setPickerValidated} onSubmit={pickerModalSubmitHandler}>
+            <Modal.Header closeButton>
+              <Modal.Title>Select Time and Date to create slots</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <div className="picker-container">
+                <div className="date-picker">
+                  <Form.Group className="picker-form-group">
+                    <Form.Label htmlFor='start-date'>START DATE</Form.Label>
+                    <Form.Control type="date" className="start-date" required onChange={startDateHandler} />
+                  </Form.Group>
+                  <Form.Group className="picker-form-group">
+                    <Form.Label htmlFor='start-date'>END DATE</Form.Label>
+                    <Form.Control type="date" className="end-date" required onChange={endDateHandler} />
+                  </Form.Group>
+                </div>
+                <div className="time-picker">
+                  <Form.Group className="picker-form-group">
+                    <Form.Label htmlFor='start-time'>START TIME</Form.Label>
+                    <Form.Control type="time" required onChange={startTimeHandler} className="start-time" />
+                  </Form.Group>
+                  <Form.Group className="picker-form-group">
+                    <Form.Label htmlFor='end-time'>END TIME</Form.Label>
+                    <Form.Control type="time" required onChange={endTimeHandler} className="end-time" />
+                  </Form.Group>
+                </div>
+                {/* <div className="user-input-submit-btn-container">
+                <Button variant="primary" type="submit" className="user-input-submit-btn" onClick={addUserEvent}>
+                  Create Event
+                </Button>
+              </div> */}
+              </div>
+            </Modal.Body>
+            <Modal.Footer>
+              <Button variant="secondary" onClick={handleClose}>
+                Close
+              </Button>
+              <Button variant="primary" type="submit" >Send</Button>
+            </Modal.Footer>
+          </Form>
+        </Modal>
 
         {!showRecruiterForm && !candidateList.length &&
           <div className="no-matched-candidate">
@@ -277,11 +371,6 @@ const RecruiterProfile = () => {
             </Button>
           </div>
         }
-
-        {/* CALENDAR CONTAINER */}
-        <div className="calendar-cont">
-          <DayzCalendar />
-        </div>
 
       </div>
     </>

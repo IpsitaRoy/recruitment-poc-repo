@@ -24,6 +24,7 @@
 
   .candidate-container {
     margin: 0 auto;
+    padding-bottom: 20px;
 
     .matched-candidate-container {
       justify-content: space-evenly;
@@ -94,5 +95,39 @@
   .form-control.is-valid, 
   .was-validated .form-control:valid {
     background-image: none; 
+  }
+}
+.picker-container {
+  .picker-form-group{
+    display: flex;
+    align-items: center;
+  }
+  .date-picker {
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+
+    .start-date,
+    .end-date {
+      width: 200px;
+      margin: 0 20px 0 20px;
+    }
+  }
+
+  .time-picker {
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+
+    .start-time,
+    .end-time {
+      width: 200px;
+      margin: 0 20px 0 20px;
+    }
+  }
+
+  .user-input-submit-btn-container {
+    display: flex;
+    justify-content: center;
   }
 }
