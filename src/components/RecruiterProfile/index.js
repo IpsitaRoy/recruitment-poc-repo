@@ -132,7 +132,6 @@ const RecruiterProfile = () => {
      cSkill = cRequirement.split(",");
     }
     const rSkill = rRequirment.split(",");
-    console.log(cSkill);
     var c = rSkill.filter(value => cSkill.includes(value))
     return c;
   }
@@ -147,16 +146,13 @@ const RecruiterProfile = () => {
   }
   const sortingCandidateList = () =>{
     const tempSortedCandidateList = [];
-    console.log('allCandidate',allCandidate);
     allCandidate.forEach(element => { 
       const totalweight = CheckForRequirement(element);
-      console.log('total', totalweight);
       if (totalweight > 0){
         element.matchCalculation = totalweight;
         tempSortedCandidateList.push(element);
       }
     });
-    console.log('aa', tempSortedCandidateList);
     const srt = tempSortedCandidateList.sort((a,b)=>b.matchCalculation-a.matchCalculation)
     setCandidateList(srt)
   }
